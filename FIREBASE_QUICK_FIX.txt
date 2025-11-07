@@ -1,0 +1,116 @@
+================================================================
+        FIREBASE STORAGE - REGION ERROR FIX
+================================================================
+
+ERROR MESSAGE:
+"Your data location has been set to a region that does not 
+support no-cost Storage buckets."
+
+================================================================
+        SOLUTION: SKIP STORAGE!
+================================================================
+
+Good News: Your app works perfectly WITHOUT Storage!
+
+Just skip the Storage step and continue with:
+
+✅ Step 1: Enable Authentication (DONE or DO THIS)
+✅ Step 2: Create Firestore Database (DONE or DO THIS)
+❌ Step 3: Skip Storage (SKIP THIS!)
+✅ Step 4: Add Security Rules (DO THIS)
+
+================================================================
+        WHAT STILL WORKS:
+================================================================
+
+✅ User registration & login
+✅ Dashboard
+✅ Community posts (text-only)
+✅ Alerts system
+✅ Map view
+✅ User profiles
+❌ Image uploads (disabled for now)
+
+This is PERFECT for testing and development!
+
+================================================================
+        HOW TO PROCEED:
+================================================================
+
+1. Complete STEP 1 (Authentication) if you haven't
+2. Complete STEP 2 (Firestore Database) if you haven't
+3. SKIP Step 3 (Storage) - Don't do anything
+4. Complete STEP 4 (Add Security Rules) - Only Firestore rules
+
+Then run your app:
+
+    cd kutumbh-app
+    npm run dev
+
+Open: http://localhost:3000
+
+================================================================
+        WANT IMAGE UPLOADS LATER?
+================================================================
+
+You can add Storage later by:
+1. Upgrading to Blaze plan (needs credit card)
+2. Creating Storage bucket
+3. Restarting your app
+
+But for now, SKIP IT and test the app!
+
+================================================================
+        FIRESTORE SECURITY RULES (Copy This):
+================================================================
+
+Go to: Firestore Database → Rules tab
+Replace everything with:
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    match /posts/{postId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && 
+        request.auth.uid == resource.data.userId;
+    }
+    
+    match /alerts/{alertId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && 
+        request.auth.uid == resource.data.createdBy;
+    }
+    
+    match /alertResponses/{responseId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && 
+        request.auth.uid == resource.data.userId;
+    }
+  }
+}
+
+Click "Publish"
+
+================================================================
+        YOU'RE ALMOST DONE!
+================================================================
+
+Just complete these 3 steps:
+1. ✅ Enable Authentication
+2. ✅ Create Firestore Database  
+3. ✅ Add Firestore Security Rules
+
+Then run: npm run dev
+
+That's it! Storage is NOT required!
+
+================================================================

@@ -1,0 +1,122 @@
+==================================================
+   KUTUMBH - FIREBASE SETUP QUICK REFERENCE
+==================================================
+
+STEP 1: OPEN FIREBASE CONSOLE
+------------------------------
+URL: https://console.firebase.google.com
+
+What to do:
+1. Click "Add project" or "Create a project"
+2. Name it: Kutumbh
+3. Click Continue (disable Analytics if you want)
+4. Wait for project to be created
+
+
+STEP 2: ADD WEB APP
+------------------------------
+1. Click the </> icon (Web icon)
+2. App nickname: Kutumbh Web
+3. Don't check Firebase Hosting
+4. Click "Register app"
+
+
+STEP 3: COPY YOUR CONFIG
+------------------------------
+You'll see something like this:
+
+const firebaseConfig = {
+  apiKey: "AIzaSyXXXXXXXXXXXXXXXXXXXXXXXX",
+  authDomain: "kutumbh-xxxxx.firebaseapp.com",
+  projectId: "kutumbh-xxxxx",
+  storageBucket: "kutumbh-xxxxx.appspot.com",
+  messagingSenderId: "123456789012",
+  appId: "1:123456789012:web:xxxxxxxxxxxxx"
+};
+
+COPY ALL OF THIS! You'll need it later.
+
+
+STEP 4: ENABLE AUTHENTICATION
+------------------------------
+1. Left sidebar → Build → Authentication
+2. Click "Get started"
+3. Click "Email/Password"
+4. Toggle ON the first switch
+5. Click Save
+
+
+STEP 5: CREATE FIRESTORE DATABASE
+------------------------------
+1. Left sidebar → Build → Firestore Database
+2. Click "Create database"
+3. Select "Test mode"
+4. Click Next
+5. Choose location (us-central1 is good)
+6. Click Enable
+7. Wait 1-2 minutes
+
+
+STEP 6: ENABLE STORAGE
+------------------------------
+1. Left sidebar → Build → Storage
+2. Click "Get started"
+3. Select "Test mode"
+4. Click Next
+5. Use same location as Firestore
+6. Click Done
+
+
+STEP 7: UPDATE YOUR APP
+------------------------------
+1. Open this file in your project:
+   kutumbh-app/src/config/firebase.js
+
+2. Find the firebaseConfig section
+
+3. Replace these values with what you copied in STEP 3:
+   - apiKey
+   - authDomain
+   - projectId
+   - storageBucket
+   - messagingSenderId
+   - appId
+
+4. Save the file (Ctrl + S)
+
+
+STEP 8: RUN YOUR APP
+------------------------------
+Open terminal/command prompt:
+
+cd kutumbh-app
+npm run dev
+
+Open browser: http://localhost:3000
+
+
+==================================================
+                  THAT'S IT!
+==================================================
+
+Your app should now work with:
+✅ Login/Register
+✅ Creating posts
+✅ Sending alerts
+✅ Map view
+✅ User profiles
+
+==================================================
+           NEED MORE HELP?
+==================================================
+
+Detailed guide with pictures:
+→ Open: FIREBASE_SETUP_INTERACTIVE.md
+
+Checklist format:
+→ Open: SETUP_CHECKLIST.md
+
+Quick start:
+→ Open: START_HERE.md
+
+==================================================
